@@ -31,19 +31,33 @@ export default class PetstoreService {
     getAllAnimals = async () => {
         const res = await this.getResource('animals?status=adoptable&type=Dog&type=Cat');
         console.log(res);
-        return res.results;
+        return res.animals
+            .map(this._transformAnimal);
     }
 
     getAllDogs = async () => {
         const res = await this.getResource('animals?status=adoptable&type=Dog');
         console.log(res);
-        return res.results;
+        return res.animals
+            .map(this._transformAnimal);
     }
 
     getAllCats = async () => {
         const res = await this.getResource('animals?status=adoptable&type=Cat');
         console.log(res);
-        return res.results;
+        return res.animals
+            .map(this._transformAnimal);
+    }
+
+    _transformAnimal = (animal) => {
+        return {
+            id: animal.id,
+            name: animal.name,
+            gender: animal.gender,
+            description: animal.description,
+            age: animal.age,
+            img: animal.primary_photo_cropped
+        }
     }
 }
 

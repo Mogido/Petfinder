@@ -5,6 +5,7 @@ import { HomePage, CartPage } from '../pages';
 
 import './app.css';
 
+
 const App = () => {
     return (
         <main role="main" className="container">
